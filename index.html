@@ -126,22 +126,22 @@
     <div class="leftContainer">
       <h2>Input</h2>
       <form class="form" id="form">
-        <!----------------------------------------------------------- side1 ----------------------------------------------------------->
+        <!----------------------------------------------------------- side_1 ----------------------------------------------------------->
         <div class="formControl">
           <label> Side 1: </label>
-          <input type="text" placeholder="Enter the length of sides" id="side1" required />
+          <input type="text" placeholder="Enter the length of sides" id="side_1" required />
           <small id="error1"></small>
         </div>
-        <!----------------------------------------------------------- side2 ----------------------------------------------------------->
+        <!----------------------------------------------------------- side_2 ----------------------------------------------------------->
         <div class="formControl">
           <label> Side 2: </label>
-          <input type="text" placeholder="Enter the length of sides" id="side2" required />
+          <input type="text" placeholder="Enter the length of sides" id="side_2" required />
           <small id="error2"></small>
         </div>
-        <!----------------------------------------------------------- side3 ----------------------------------------------------------->
+        <!----------------------------------------------------------- side_3 ----------------------------------------------------------->
         <div class="formControl">
           <label> Side 3: </label>
-          <input type="text" placeholder="Enter the length of sides" id="side3" required />
+          <input type="text" placeholder="Enter the length of sides" id="side_3" required />
           <small id="error3"></small>
         </div>
 
@@ -176,9 +176,9 @@
   });
 
   function InputValidate() {
-    const side1 = document.getElementById("side1").value;
-    const side2 = document.getElementById("side2").value;
-    const side3 = document.getElementById("side3").value;
+    const side_1 = document.getElementById("side_1").value;
+    const side_2 = document.getElementById("side_2").value;
+    const side_3 = document.getElementById("side_3").value;
 
     var text = "Invalid Input";
     var isValid_side1 = false;
@@ -187,7 +187,7 @@
     var isValid = false;
 
 
-    if (side1 == " " || isNaN(side1) || side1 < 0 || side1 > 4294967296) {
+    if (side_1 == " " || isNaN(side_1) || side_1 <= 0 || side_1 >= 4294967296) {
       document.getElementById("error1").innerHTML = text;
       isValid_side1 = false;
       isValid = false;
@@ -196,7 +196,7 @@
       document.getElementById("error1").innerHTML = " ";
       isValid_side1 = true;
     }
-    if (side2 == " " || isNaN(side2) || side2 < 0 || side2 > 4294967296) {
+    if (side_2 == " " || isNaN(side_2) || side_2 <= 0  || side_2 >= 4294967296) {
       document.getElementById("error2").innerHTML = text;
       isValid_side2 = false;
       isValid = false;
@@ -205,7 +205,7 @@
       document.getElementById("error2").innerHTML = " ";
       isValid_side2 = true;
     }
-    if (side3 == " " || isNaN(side3) || side3 < 0 || side3 > 4294967296) {
+    if (side_3 == " " || isNaN(side_3) || side_3 <= 0 || side_3 >= 4294967296) {
       document.getElementById("error3").innerHTML = text;
       isValid_side3 = false;
       isValid = false;
@@ -217,45 +217,45 @@
     if (isValid_side1 == true && isValid_side2 == true && isValid_side3 == true) {
       isValid = true;
     }
-    var a = parseFloat(side1);
-    var b = parseFloat(side2);
-    var c = parseFloat(side3)
+    var a = parseFloat(side_1);
+    var b = parseFloat(side_2);
+    var c = parseFloat(side_3)
     Calcalation(isValid, a, b, c);
   }
 
-  function Calcalation(isValid, side1, side2, side3) {
+  function Calcalation(isValid, side_1, side_2, side_3) {
     if (isValid == false) {
       document.getElementById("result").innerHTML = "Invalid Input";
       var img = document.getElementById("img");
       img.style.visibility = "hidden";
     }
     if (isValid == true) {
-      if ((side1 + side2 <= side3) || (side1 + side3 <= side2) || (side2 + side3 <= side1)) {
+      if ((side_1 + side_2 <= side_3) || (side_1 + side_3 <= side_2) || (side_2 + side_3 <= side_1)) {
         document.getElementById("result").innerHTML = "It is not a triangle";
         var img = document.getElementById("img");
         img.style.visibility = "hidden";
       }
-      else if (side1 == side2 && side2 == side3 && side1 == side3) {
+      else if (side_1 == side_2 && side_2 == side_3 && side_1 == side_3) {
         document.getElementById("result").innerHTML = "Equilateral Triangle";
         var img = document.getElementById("img");
         img.src = "https://i.imgur.com/Hg6KWTu.png";
         img.style.visibility = "visible";
       }
-      else if ((((side1 * side1) + (side2 * side2)) == (side3 * side3)) ||
-        (((side1 * side1) + (side3 * side3)) == (side2 * side2)) ||
-        (((side3 * side3) + (side2 * side2)) == (side1 * side1))) {
+      else if ((((side_1 * side_1) + (side_2 * side_2)) == (side_3 * side_3)) ||
+        (((side_1 * side_1) + (side_3 * side_3)) == (side_2 * side_2)) ||
+        (((side_3 * side_3) + (side_2 * side_2)) == (side_1 * side_1))) {
         document.getElementById("result").innerHTML = "Right Triangle";
         var img = document.getElementById("img");
         img.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Triangle.Right.svg/1200px-Triangle.Right.svg.png";
         img.style.visibility = "visible";
       }
-      else if ((side1 == side2 && side1 != side3) || (side1 == side3 && side1 != side2) || (side2 == side3 && side1 != side3)) {
+      else if ((side_1 == side_2 && side_1 != side_3) || (side_1 == side_3 && side_1 != side_2) || (side_2 == side_3 && side_1 != side_3)) {
         document.getElementById("result").innerHTML = "Isosceles Triangle";
         var img = document.getElementById("img");
         img.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Triangle-isosceles.svg/1200px-Triangle-isosceles.svg.png";
         img.style.visibility = "visible";
       }
-      else if (side1 != side2 && side1 != side3 && side2 != side3) {
+      else if (side_1 != side_2 && side_1 != side_3 && side_2 != side_3) {
         document.getElementById("result").innerHTML = "Scalene Triangle";
         var img = document.getElementById("img");
         img.src = "https://images.twinkl.co.uk/tr/image/upload/illustation/scalene-triangle-black-and-white.png";
@@ -266,7 +266,7 @@
 
     }
 
-    // console.log(typeof side1);
+    // console.log(typeof side_1);
   }
 </script>
 
